@@ -11,3 +11,7 @@ export default function Main() {
       </NavigationContainer>
     )
   }
+  /*
+  Las diferentes secciones que tendrá la app deberán disponga de un token almacenado en el contextState autenticado y 
+  el mismo, se obtendrá de una API con datos de muestra
+  */

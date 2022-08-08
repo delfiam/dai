@@ -1,0 +1,2 @@
+/*Al hacer click en un plato del menú, se deberá mostrar los detalles de ese plato en caso de que ya este en el menú.
+O un botón de agregar al menú en caso de que no esté. Al agregar el plato al menú se va a guardar en el contextState. */
