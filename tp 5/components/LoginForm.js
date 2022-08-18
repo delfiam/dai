@@ -15,10 +15,14 @@ En el caso de obtener un error de la API, se deberá mostrar una alerta (catch (
 redirigir al Home y almacenar el token obtenido en el contextState. Para realizar las validaciones no es necesario
 utilizar ninguna librería. */
 import React, { useState } from "react";
-import { Button, TextInput, View, Text, StyleSheet, Image } from 'react-native';
+import { Button, TextInput, View, Text, StyleSheet, Image,  ActivityIndicator, TouchableOpacity } from 'react-native';
 export default function LoginForm({login}) {
     const [email, setEmail] = useState("challenge@alkemy.org")
     const [password, setPassword] = useState("react")
+    const [isLoading, setIsLoading] = useState(false);
+    const toggleLoading = () => {
+      setIsLoading(!isLoading);
+    };
   
   return (
     <View style={styles.container}>
@@ -39,9 +43,19 @@ export default function LoginForm({login}) {
           />
         </View>
       </View>
-      <View style={styles.boton}>
-        <Button title="Ingresar" color="#D7A625" onPress={() => login(email, password)} />
-      </View>
+      <TouchableOpacity onPress={toggleLoading}>
+        <View
+          style={{
+            ...styles.button,
+            backgroundColor: isLoading ? "#4caf50" : "#8bc34a",
+          }}
+        >
+          {isLoading && <ActivityIndicator size="large" color="yellow" />}
+          <Text style={styles.buttonText}>
+            {isLoading ? "Stop Loading" : "Start Loading"}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -56,18 +70,24 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '11%',
-    marginTop: '10%',
+    marginTop: 50,
   },
 
-  imageStyle: {
-    resizeMode: 'stretch',
-    alignItems: 'center',
+  button: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    width: 240,
+    height: 70,
+    borderWidth: 1,
+    borderColor: "#666",
+    borderRadius: 10,
   },
-  boton: {
-    marginTop: '5%',
-    height: '100%',
-    width: '100%',
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 20
   },
 
   input: {
@@ -76,7 +96,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     width: 200,
     height: 45,
-    marginLeft: '2%',
+    textAlign: 'center',
   },
 
 });

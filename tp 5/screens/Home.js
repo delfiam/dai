@@ -5,7 +5,7 @@
 ● Se deberá poder eliminar un plato del menú, lo que generará nuevamente los promedios y acumulativos (los mismos deben estar almacenados en el estado del componente utilizando Hooks)
  */
 import React from "react";
-
+import { Text } from "react-native";
 export default function HomeScreen () {
     return (
         <Text>Hola</Text>
