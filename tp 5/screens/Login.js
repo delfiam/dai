@@ -16,6 +16,7 @@ export default function LoginScreen() {
       })
       .catch(error => {
         console.error('error', error)
+        alert('Datos incorrectos')
       })
   }
 

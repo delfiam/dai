@@ -48,7 +48,7 @@ export default function LoginForm({login}) {
       <TouchableOpacity onPress={toggleLoading}>
         <View
           style={styles.button} pointerEvents={isLoading ? 'none' : 'auto'}>
-          {isLoading && <ActivityIndicator style={styles.act} size="small"/>} 
+          {isLoading ? <ActivityIndicator style={styles.act} size="small" hidesWhenStopped='true'/> : null} 
           <Text style={styles.buttonText}>
             {isLoading ? "Sign In" : "Sign In"}
           </Text>
