@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   img: {
     height: 200,
     width: 200,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   container: {
     justifyContent: 'center',
@@ -46,7 +46,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#044C24",
     height: '100%',
     width: '100%',
-
-
   },
 });

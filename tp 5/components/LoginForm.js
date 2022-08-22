@@ -22,6 +22,7 @@ export default function LoginForm({login}) {
     const [isLoading, setIsLoading] = useState(false);
     const toggleLoading = () => {
       setIsLoading(!isLoading);
+      login(email, password)
     };
   
   return (
@@ -31,6 +32,7 @@ export default function LoginForm({login}) {
           placeholder="  Email"
           onChangeText={(text) => setEmail(text)}
           defaultValue= "challenge@alkemy.org"
+          
         />
       </View>
       <View>
@@ -45,14 +47,10 @@ export default function LoginForm({login}) {
       </View>
       <TouchableOpacity onPress={toggleLoading}>
         <View
-          style={{
-            ...styles.button,
-            backgroundColor: isLoading ? "#4caf50" : "#8bc34a",
-          }}
-        >
-          {isLoading && <ActivityIndicator size="large" color="yellow" />}
+          style={styles.button} pointerEvents={isLoading ? 'none' : 'auto'}>
+          {isLoading && <ActivityIndicator style={styles.act} size="small"/>} 
           <Text style={styles.buttonText}>
-            {isLoading ? "Stop Loading" : "Start Loading"}
+            {isLoading ? "Sign In" : "Sign In"}
           </Text>
         </View>
       </TouchableOpacity>
@@ -78,16 +76,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    width: 240,
-    height: 70,
+    width: 140,
+    height: 50,
     borderWidth: 1,
-    borderColor: "#666",
+    backgroundColor: '#4caf50',
+    borderColor: '#4caf50',
     borderRadius: 10,
+    marginTop: 8,
   },
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 15
   },
 
   input: {
@@ -98,5 +98,9 @@ const styles = StyleSheet.create({
     height: 45,
     textAlign: 'center',
   },
+
+  act: {
+    color: 'black'
+  }
 
 });
