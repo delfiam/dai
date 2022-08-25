@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '80%',
+    marginTop: 150,
 
   },
   pag: {

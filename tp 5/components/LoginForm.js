@@ -24,7 +24,7 @@ export default function LoginForm({login}) {
       setIsLoading(!isLoading);
       login(email, password)
     };
-  
+  // this.props.navigation.reset([NavigationActions.navigate({ routeName: 'DevicesList'})], 0); para que no vuelva al login?
   return (
     <View style={styles.container}>
       <View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 10,
   },
 
   button: {
