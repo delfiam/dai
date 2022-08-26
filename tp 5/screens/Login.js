@@ -2,29 +2,15 @@ import react from "react";
 import { Image, StyleSheet, View } from 'react-native'
 import LoginForm from "../components/LoginForm";
 import HomeScreen from "./Home";
-import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
-export default function LoginScreen() {
 
-  const navigation = useNavigation();
-  const login = async (email, password) => {
-    let usuario = { "email": email, "password": password }
-    console.log(email)
-    return axios.post('http://challenge-react.alkemy.org/?email=' + usuario.email + '&password=' + usuario.password)
-      .then(res => {
-        navigation.replace('Home'), res.data;
-      })
-      .catch(error => {
-        console.error('error', error)
-        alert('Datos incorrectos')
-      })
-  }
+
+export default function LoginScreen() {
 
   return (
     <View style={styles.pag}>
       <View style={styles.container}>
         <Image style={styles.img} source={require('../assets/icon.png')}></Image>
-        <LoginForm login={login}></LoginForm>
+        <LoginForm></LoginForm>
       </View>
     </View>
   )

@@ -15,24 +15,40 @@ En el caso de obtener un error de la API, se deberá mostrar una alerta (catch (
 redirigir al Home y almacenar el token obtenido en el contextState. Para realizar las validaciones no es necesario
 utilizar ninguna librería. */
 import React, { useState } from "react";
-import { Button, TextInput, View, Text, StyleSheet, Image,  ActivityIndicator, TouchableOpacity } from 'react-native';
-export default function LoginForm({login}) {
-    const [email, setEmail] = useState("challenge@alkemy.org")
-    const [password, setPassword] = useState("react")
-    const [isLoading, setIsLoading] = useState(false);
-    const toggleLoading = () => {
-      setIsLoading(!isLoading);
-      login(email, password)
-    };
-  // this.props.navigation.reset([NavigationActions.navigate({ routeName: 'DevicesList'})], 0); para que no vuelva al login?
+import { Button, TextInput, View, Text, StyleSheet, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
+export default function LoginForm() {
+  const [email, setEmail] = useState("challenge@alkemy.org")
+  const [password, setPassword] = useState("react")
+  const [isLoading, setIsLoading] = useState(false);
+  const toggleLoading = () => {
+    setIsLoading(!isLoading);
+    login(email, password);
+
+  };
+  const navigation = useNavigation();
+  const login = async (email, password) => {
+    let usuario = { "email": email, "password": password }
+    console.log(email)
+    return axios.post('http://challenge-react.alkemy.org/?email=' + usuario.email + '&password=' + usuario.password)
+      .then(res => {
+        navigation.replace('Home'), res.data;
+      })
+      .catch(error => {
+        console.error('error', error)
+        alert('Datos incorrectos')
+        setIsLoading(false);
+      })
+  }
   return (
     <View style={styles.container}>
       <View>
         <TextInput style={styles.input}
           placeholder="  Email"
           onChangeText={(text) => setEmail(text)}
-          defaultValue= "challenge@alkemy.org"
-          
+          defaultValue="challenge@alkemy.org"
+
         />
       </View>
       <View>
@@ -48,9 +64,9 @@ export default function LoginForm({login}) {
       <TouchableOpacity onPress={toggleLoading}>
         <View
           style={styles.button} pointerEvents={isLoading ? 'none' : 'auto'}>
-          {isLoading ? <ActivityIndicator style={styles.act} size="small" hidesWhenStopped='true'/> : null} 
+          {isLoading ? <ActivityIndicator style={styles.act} size="small" hidesWhenStopped='true' /> : null}
           <Text style={styles.buttonText}>
-            {isLoading ? "Sign In" : "Sign In"}
+            Sign in
           </Text>
         </View>
       </TouchableOpacity>
