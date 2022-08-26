@@ -12,7 +12,7 @@ export default function LoginScreen() {
     console.log(email)
     return axios.post('http://challenge-react.alkemy.org/?email=' + usuario.email + '&password=' + usuario.password)
       .then(res => {
-        navigation.navigate('Home'), res.data;
+        navigation.replace('Home'), res.data;
       })
       .catch(error => {
         console.error('error', error)
