@@ -3,7 +3,6 @@ import { Image, StyleSheet, View } from 'react-native'
 import LoginForm from "../components/LoginForm";
 import HomeScreen from "./Home";
 
-
 export default function LoginScreen() {
 
   return (

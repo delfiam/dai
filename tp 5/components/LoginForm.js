@@ -1,33 +1,63 @@
-/* El formulario se deberá renderizar al ingresar a cualquier ruta si el usuario no está autenticado, conteniendo los
-campos:
-● Email.
-● Password.
-● Botón de “Enviar”
-Al hacer click en “Enviar”, se deberá validar que ambos campos no estén vacíos, y mostrar un mensaje al usuario si
-lo estuviesen. (poner require en los forms) Caso contrario, se deberá realizar una petición POST a la siguiente url (http://challenge-react.alkemy.org/), con los campos email y
-password en el BODY.
-Los datos válidos para obtener un token son:
-● Email: challenge@alkemy.org
-● Password: react
+/*
 Se debe mostrar algún tipo de feedback al usuario mientras se está procesando la petición, no permitiendo que
 vuelva a accionar el botón de login hasta obtener una respuesta. (un boton de cargando deshabilitado?)
 En el caso de obtener un error de la API, se deberá mostrar una alerta (catch (e)), mientras que si es satisfactorio deberá
 redirigir al Home y almacenar el token obtenido en el contextState. Para realizar las validaciones no es necesario
 utilizar ninguna librería. */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextInput, View, Text, StyleSheet, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+
 export default function LoginForm() {
+
+  const navigation = useNavigation();
   const [email, setEmail] = useState("challenge@alkemy.org")
   const [password, setPassword] = useState("react")
   const [isLoading, setIsLoading] = useState(false);
+  const [recetas, setRecetas] = useState();
+
   const toggleLoading = () => {
     setIsLoading(!isLoading);
     login(email, password);
 
   };
-  const navigation = useNavigation();
+
+  const recetasnormales = async () => {
+    return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=Whole30&addRecipeInformation=true')
+     .then(response => {
+      let recetanormal = [];
+      recetanormal = response.data.results;
+      return recetanormal;
+    }
+     )
+  }
+
+  const recetasveganas = async () => {
+    return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=vegan&addRecipeInformation=true')
+    .then(response => {
+      let recetavegana = [];
+      recetavegana = response.data.results;
+      return recetavegana;
+    }
+      )
+    }
+
+    useEffect(() => {
+      recetasnormales().then(
+        (recetanormal) => {
+        recetasveganas()
+        .then((recetavegana) => {
+          setRecetas([recetanormal.concat(recetavegana)]);
+          console.log(setRecetas)
+      }
+        )
+    }
+      )
+
+    }, [])
+    
+
   const login = async (email, password) => {
     let usuario = { "email": email, "password": password }
     console.log(email)
@@ -37,10 +67,11 @@ export default function LoginForm() {
       })
       .catch(error => {
         console.error('error', error)
-        alert('Datos incorrectos')
         setIsLoading(false);
+        alert('Datos incorrectos')
       })
   }
+
   return (
     <View style={styles.container}>
       <View>
@@ -63,7 +94,7 @@ export default function LoginForm() {
       </View>
       <TouchableOpacity onPress={toggleLoading}>
         <View
-          style={styles.button} pointerEvents={isLoading ? 'none' : 'auto'}>
+          style={styles.button}>
           {isLoading ? <ActivityIndicator style={styles.act} size="small" hidesWhenStopped='true' /> : null}
           <Text style={styles.buttonText}>
             Sign in
@@ -73,6 +104,7 @@ export default function LoginForm() {
     </View>
   )
 }
+
 const styles = StyleSheet.create({
   formstyle: {
     backgroundColor: 'white',
