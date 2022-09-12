@@ -14,7 +14,7 @@ export default function LoginForm() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("challenge@alkemy.org")
   const [password, setPassword] = useState("react")
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(null);
   const [recetas, setRecetas] = useState();
 
   const toggleLoading = () => {
@@ -26,8 +26,7 @@ export default function LoginForm() {
   const recetasnormales = async () => {
     return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=Whole30&addRecipeInformation=true')
      .then(response => {
-      let recetanormal = [];
-      recetanormal = response.data.results;
+      let recetanormal = response.data.results;
       return recetanormal;
     }
      )
@@ -36,8 +35,7 @@ export default function LoginForm() {
   const recetasveganas = async () => {
     return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=vegan&addRecipeInformation=true')
     .then(response => {
-      let recetavegana = [];
-      recetavegana = response.data.results;
+      let recetavegana = response.data.results;
       return recetavegana;
     }
       )
@@ -66,9 +64,8 @@ export default function LoginForm() {
         navigation.replace('Home'), res.data;
       })
       .catch(error => {
-        console.error('error', error)
+        console.error('error', error);
         setIsLoading(false);
-        alert('Datos incorrectos')
       })
   }
 
@@ -99,8 +96,10 @@ export default function LoginForm() {
           <Text style={styles.buttonText}>
             Sign in
           </Text>
-        </View>
+          </View>
       </TouchableOpacity>
+          {(isLoading == false) && <Text style={styles.datosmal}>Datos incorrectos</Text>}
+      
     </View>
   )
 }
@@ -149,6 +148,13 @@ const styles = StyleSheet.create({
 
   act: {
     color: 'black'
+  },
+
+  datosmal:{
+    color: 'white',
+    fontStyle: 'bold',
+    fontSize: 15,
+    marginTop: 5,
   }
 
 });
