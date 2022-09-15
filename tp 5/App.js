@@ -5,7 +5,9 @@ import LoginScreen from './screens/Login';
 
 export default function App() {
   return (
+    <View style={styles.pag}>
    <Main></Main>
+   </View>
   );
 }
 
@@ -15,5 +17,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pag: {
+    backgroundColor: "#044C24",
+    height: '100%',
+    width: '100%',
   },
 });

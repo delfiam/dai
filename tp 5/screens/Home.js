@@ -6,10 +6,11 @@
  */
 import React from "react";
 import { Text, View } from "react-native";
+import Buscador from "../components/Buscador";
 export default function HomeScreen () {
     return (
         <View>
-            
+            <Buscador></Buscador>
         </View>
     )
 }
