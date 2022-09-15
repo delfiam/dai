@@ -6,3 +6,34 @@ separado) del listado (ul)? dice del listado contendrá:
 ● Acciones para ver el detalle o eliminarlo del menú.
 */
 
+import * as React from 'react';
+import { Text, View, StyleSheet } from "react-native";
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+
+const LeftContent = props => <Avatar.Icon {...props} icon="food-variant" style={{backgroundColor: '#044C24'}} />
+
+export default function CardLis() {
+    return (
+        <View style={styles.card}>
+            <Card>
+                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+                <Card.Content>
+                    <Title>Card title</Title>
+                    <Paragraph>Card content</Paragraph>
+                </Card.Content>
+                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Actions style={styles.button}>
+                    <Button color='#044C24'>Ver Detalle</Button>
+                    <Button color='#044C24'>Eliminar</Button>
+                </Card.Actions>
+            </Card>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    card: {
+        marginTop: 20,
+        margin: 10
+    }
+})

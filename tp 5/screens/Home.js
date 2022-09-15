@@ -5,12 +5,26 @@
 ● Se deberá poder eliminar un plato del menú, lo que generará nuevamente los promedios y acumulativos (los mismos deben estar almacenados en el estado del componente utilizando Hooks)
  */
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import Buscador from "../components/Buscador";
+import CardLis from "../components/ListadoPlatos";
 export default function HomeScreen () {
     return (
-        <View>
+        <View style={styles.pag}>
             <Buscador></Buscador>
+            <CardLis></CardLis>
         </View>
     )
 }
+const styles = StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    pag: {
+      backgroundColor: "#044C24",
+      height: '100%',
+      width: '100%',
+    },
+  });
+  
