@@ -46,7 +46,9 @@ export default function LoginForm() {
         (recetanormal) => {
         recetasveganas()
         .then((recetavegana) => {
-          setRecetas([recetanormal.concat(recetavegana)]);
+          const recetasgeneral = recetanormal.concat(recetavegana)
+          console.log(recetasgeneral)
+          setRecetas(recetasgeneral);
           console.log(setRecetas)
       }
         )
