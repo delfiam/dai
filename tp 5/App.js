@@ -5,7 +5,7 @@ import LoginScreen from './screens/Login';
 
 export default function App() {
   return (
-   <Main style={styles.pag}></Main>
+   <Main></Main>
   );
 }
 
