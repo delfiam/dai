@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function CardLis() {
     const navigation = useNavigation();
+    const data = []; //https://reactnative.dev/docs/flatlist y para horizontal es horizontal = {true}
     return (
         <View style={styles.card}>
             <Card onTouchStart={() => navigation.navigate('DetallePlato')}>
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
         padding: 30,
         width: '40%',
         textAlign: 'center',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
+        resizeMode: '',
     }
 })

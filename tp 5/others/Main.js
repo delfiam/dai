@@ -3,9 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/Login';
 import HomeScreen from '../screens/Home';
 import DetalleScreen from '../screens/DetallePlato';
+import React from 'react';
+import { RecetasProvider } from '../others/Context';
 export default function Main() {
     const Stack = createNativeStackNavigator()
+    const [recetas, setRecetas] = useState();
     return (
+        <RecetasProvider value={[recetas, setRecetas]}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
@@ -13,6 +17,7 @@ export default function Main() {
           <Stack.Screen name="DetallePlato" component={DetalleScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
+      </RecetasProvider>
     )
   }
   /*

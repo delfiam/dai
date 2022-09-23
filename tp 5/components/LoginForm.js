@@ -22,7 +22,7 @@ export default function LoginForm() {
     login(email, password);
 
   };
-/*
+
   const recetasnormales = async () => {
     return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=Whole30&addRecipeInformation=true')
      .then(response => {
@@ -57,7 +57,7 @@ export default function LoginForm() {
       )
 
     }, [])
-    */
+    
 
   const login = async (email, password) => {
     let usuario = { "email": email, "password": password }
