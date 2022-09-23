@@ -4,10 +4,11 @@ vuelva a accionar el botón de login hasta obtener una respuesta. (un boton de c
 En el caso de obtener un error de la API, se deberá mostrar una alerta (catch (e)), mientras que si es satisfactorio deberá
 redirigir al Home y almacenar el token obtenido en el contextState. Para realizar las validaciones no es necesario
 utilizar ninguna librería. */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, TextInput, View, Text, StyleSheet, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import RecetasContext from "../others/Context";
 
 export default function LoginForm() {
 
@@ -15,7 +16,7 @@ export default function LoginForm() {
   const [email, setEmail] = useState("challenge@alkemy.org")
   const [password, setPassword] = useState("react")
   const [isLoading, setIsLoading] = useState(null);
-  const [recetas, setRecetas] = useState();
+  const [recetas, setRecetas] = useContext(RecetasContext);
 
   const toggleLoading = () => {
     setIsLoading(!isLoading);
@@ -50,7 +51,7 @@ export default function LoginForm() {
           const recetasgeneral = recetanormal.concat(recetavegana)
           console.log(recetasgeneral)
           setRecetas(recetasgeneral);
-          console.log(setRecetas)
+          console.log(recetas)
       }
         )
     }

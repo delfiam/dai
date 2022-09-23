@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/Login';
 import HomeScreen from '../screens/Home';
 import DetalleScreen from '../screens/DetallePlato';
-import React from 'react';
+import { useState, useEffect, React } from 'react';
 import { RecetasProvider } from '../others/Context';
 export default function Main() {
     const Stack = createNativeStackNavigator()
