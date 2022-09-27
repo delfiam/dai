@@ -16,7 +16,6 @@ import PlatoCard from './PlatoCard';
 export default function CardLis() {
     const navigation = useNavigation();
     const [recetas, setRecetas] = useContext(RecetasContext);
-
      const eliminarRecetas = (id) => {
         const recetasFiltradas = recetas.filter((receta) => receta.id !== id);
         setRecetas(recetasFiltradas);

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import RecetasContext from '../others/Context';
 export default function PlatoCard(props) {
-    const navigation = useNavigation();
+    
+    useEffect(() => {
     console.log(props.item.item.title, 'props')
+    const navigation = useNavigation();
+    }, [])
     return (
         <View style={styles.card}>
             <Card onTouchStart={() => navigation.navigate('DetallePlato')}>
