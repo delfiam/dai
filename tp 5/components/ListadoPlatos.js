@@ -11,26 +11,22 @@ import { Text, View, StyleSheet, FlatList } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import RecetasContext from '../others/Context';
+import PlatoCard from './PlatoCard';
 
 export default function CardLis() {
     const navigation = useNavigation();
     const [recetas, setRecetas] = useContext(RecetasContext);
     const ids = Math.floor(Math.random() * 5)
-    console.log(recetas[0].title, "ey")
-    const data = [{
-        id: ids,
-        titulo: recetas[ids].title
-    }
-    ]; //https://reactnative.dev/docs/flatlist y para horizontal es horizontal = {true}
+     //https://reactnative.dev/docs/flatlist y para horizontal es horizontal = {true}
+  const renderItem = (recetas) => (
+    <PlatoCard item={recetas} />
+  )
     return (
-        <View>
         <FlatList
-        data={data}
+        data={recetas}
         renderItem={renderItem}
-        horizontal = {true}
-        keyExtractor={item => item.id}
+        numColumns={2}
       />
-        </View>
  )
     
 }

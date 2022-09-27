@@ -1,21 +1,34 @@
 import React from "react";
-
-export default function PlatoCard () {
+import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import RecetasContext from '../others/Context';
+export default function PlatoCard(props) {
+    const navigation = useNavigation();
+    console.log(props.item.item.title, 'props')
     return (
         <View style={styles.card}>
-        <Card onTouchStart={() => navigation.navigate('DetallePlato')}>
-        <Avatar.Icon icon="food-variant" style={{ backgroundColor: '#044C24' }}></Avatar.Icon>
-            <Card.Title title={titulo} subtitle="Card Subtitle"/>
-            <Card.Content>
-                <Title>Card title</Title>
-                <Paragraph>Card content</Paragraph>
-            </Card.Content>
-            <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-            <Card.Actions style={styles.button}>
-                <Button color='#044C24'>Ver Detalle</Button>
-                <Button color='#044C24'>Eliminar</Button>
-            </Card.Actions>
-        </Card>
- </View>
+            <Card onTouchStart={() => navigation.navigate('DetallePlato')}>
+                <Avatar.Icon icon="food-variant" style={{ backgroundColor: '#044C24' }}></Avatar.Icon>
+                <Card.Title title={props.item.item.title} subtitle={props.item.item.diets} />
+                <Card.Cover source={props.item.item.image} />
+                <Card.Actions style={styles.button}>
+                    <Button color='#044C24'>Ver Detalle</Button>
+                    <Button color='#044C24'>Eliminar</Button>
+                </Card.Actions>
+            </Card>
+        </View>
     )
 }
+const styles = StyleSheet.create({
+    card: {
+        marginTop: 20,
+        margin: 10,
+        marginRight: 5,
+        padding: 30,
+        width: '50%',
+        textAlign: 'center',
+        alignItems: 'stretch',
+        resizeMode: '',
+    }
+})

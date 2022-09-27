@@ -23,7 +23,7 @@ export default function LoginForm() {
     login(email, password);
 
   };
-
+/*
   const recetasnormales = async () => {
     return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=Whole30&addRecipeInformation=true')
      .then(response => {
@@ -42,8 +42,10 @@ export default function LoginForm() {
       )
     }
     
+*/
 
     useEffect(() => {
+      /*
       recetasnormales().then(
         (...recetanormal) => {
         recetasveganas()
@@ -56,6 +58,9 @@ export default function LoginForm() {
         )
     }
       )
+      */
+     const data = require('./APIFalsa.json')
+     setRecetas(data.results)
 
     }, [])
     console.log(recetas, "hh")
