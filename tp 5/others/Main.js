@@ -7,9 +7,9 @@ import { useState, useEffect, React } from 'react';
 import { RecetasProvider } from '../others/Context';
 export default function Main() {
     const Stack = createNativeStackNavigator()
-    const [recetas, setRecetas] = useState();
+    const [recetas, setRecetas] = useState([]);
     return (
-        <RecetasProvider value={[recetas, setRecetas]}>
+      <RecetasProvider value={[recetas, setRecetas]}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />

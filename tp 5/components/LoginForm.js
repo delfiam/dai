@@ -45,20 +45,20 @@ export default function LoginForm() {
 
     useEffect(() => {
       recetasnormales().then(
-        (recetanormal) => {
+        (...recetanormal) => {
         recetasveganas()
-        .then((recetavegana) => {
+        .then((...recetavegana) => {
           const recetasgeneral = recetanormal.concat(recetavegana)
           console.log(recetasgeneral)
-          setRecetas(recetasgeneral);
-          console.log(recetas)
+          setRecetas(...recetasgeneral);
+          console.log(recetas, "hola")
       }
         )
     }
       )
 
     }, [])
-    
+    console.log(recetas, "hh")
 
   const login = async (email, password) => {
     let usuario = { "email": email, "password": password }
