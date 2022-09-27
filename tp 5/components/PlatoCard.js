@@ -14,7 +14,7 @@ export default function PlatoCard(props) {
                 <Card.Cover source={props.item.item.image} />
                 <Card.Actions style={styles.button}>
                     <Button color='#044C24'>Ver Detalle</Button>
-                    <Button color='#044C24'>Eliminar</Button>
+                    <Button color='#044C24' onPress={props.eliminarRecetas(props.item.item.id)}>Eliminar</Button>
                 </Card.Actions>
             </Card>
         </View>

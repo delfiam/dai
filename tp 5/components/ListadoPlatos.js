@@ -16,10 +16,13 @@ import PlatoCard from './PlatoCard';
 export default function CardLis() {
     const navigation = useNavigation();
     const [recetas, setRecetas] = useContext(RecetasContext);
-    const ids = Math.floor(Math.random() * 5)
-     //https://reactnative.dev/docs/flatlist y para horizontal es horizontal = {true}
+
+     const eliminarRecetas = (id) => {
+        const recetasFiltradas = recetas.filter((receta) => receta.id !== id);
+        setRecetas(recetasFiltradas);
+    }
   const renderItem = (recetas) => (
-    <PlatoCard item={recetas} />
+    <PlatoCard item={recetas} eliminarRecetas={eliminarRecetas}/>
   )
     return (
         <FlatList
