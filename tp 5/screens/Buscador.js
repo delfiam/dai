@@ -8,28 +8,43 @@ import { StyleSheet, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import RecetasContext from '../others/Context';
 
-const Buscador = () => {
-// alv hacer un touchable que diga buscar y lleve a la screen buscar
+export default function BuscadorScreen () {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [recetas, setRecetas] = useContext(RecetasContext);
+
+  const sinrecetas = (query) => { 
+  setSearchQuery(query) }
 
   return (
-    <View>
+    <View style={styles.pag}>
       <Searchbar
+        placeholder="Buscar..."
+        onChangeText={sinrecetas}
+        value={searchQuery}
         style={styles.buscador}
       />
+      <Text>Hola</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   buscador: {
-    width: '3%',
+    width: 340,
     height: 50,
     alignSelf: 'center',
     borderRadius: 10,
     ocapacity: '80%',
     marginTop: 20,
     marginBottom: 0,
-  }
+  },
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  pag: {
+    backgroundColor: "#044C24",
+    height: '100%',
+    width: '100%',
+  },
 });
-
-export default Buscador;

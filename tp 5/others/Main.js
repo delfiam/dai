@@ -5,6 +5,7 @@ import HomeScreen from '../screens/Home';
 import DetalleScreen from '../screens/DetallePlato';
 import { useState, useEffect, React } from 'react';
 import { RecetasProvider } from '../others/Context';
+import BuscadorScreen from '../screens/Buscador';
 export default function Main() {
     const Stack = createNativeStackNavigator()
     const [recetas, setRecetas] = useState([]);
@@ -15,6 +16,7 @@ export default function Main() {
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
           <Stack.Screen name="DetallePlato" component={DetalleScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Buscador" component={BuscadorScreen} options ={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
       </RecetasProvider>

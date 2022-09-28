@@ -8,10 +8,12 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Buscador from "../components/Buscador";
 import CardLis from "../components/ListadoPlatos";
+import { useNavigation } from '@react-navigation/native';
 export default function HomeScreen () {
+  const navigation = useNavigation();
     return (
         <View style={styles.pag}>
-            <Buscador></Buscador>
+            <Buscador onClick={() => navigation.navigate('Buscador')}></Buscador>
             <CardLis></CardLis>
         </View>
     )
