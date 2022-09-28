@@ -4,20 +4,19 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import RecetasContext from '../others/Context';
 export default function PlatoCard(props) {
-    
+    const navigation = useNavigation();
     useEffect(() => {
     console.log(props.item.item.title, 'props')
-    const navigation = useNavigation();
     }, [])
     return (
         <View style={styles.card}>
-            <Card onTouchStart={() => navigation.navigate('DetallePlato')}>
+            <Card >
                 <Avatar.Icon icon="food-variant" style={{ backgroundColor: '#044C24' }}></Avatar.Icon>
                 <Card.Title title={props.item.item.title} subtitle={props.item.item.diets} />
                 <Card.Cover source={props.item.item.image} />
                 <Card.Actions style={styles.button}>
-                    <Button color='#044C24'>Ver Detalle</Button>
-                    <Button color='#044C24' onPress={props.eliminarRecetas(props.item.item.id)}>Eliminar</Button>
+                    <Button color='#044C24' onPress={() => navigation.navigate('DetallePlato')}>Ver Detalle</Button>
+                    <Button color='#044C24' onPress={() => props.eliminarRecetas(props.item.item.id)}>Eliminar</Button>
                 </Card.Actions>
             </Card>
         </View>
