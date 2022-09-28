@@ -23,47 +23,33 @@ export default function LoginForm() {
     login(email, password);
 
   };
-/*
+
   const recetasnormales = async () => {
     return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=Whole30&addRecipeInformation=true')
      .then(response => {
-      let recetanormal = response.data.results;
-      return recetanormal;
+      let recetasgeneral = response.data.results;
+      return recetasgeneral;
     }
      )
   }
-
-  const recetasveganas = async () => {
-    return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=vegan&addRecipeInformation=true')
-    .then(response => {
-      let recetavegana = response.data.results;
-      return recetavegana;
-    }
-      )
-    }
     
-*/
+
 
     useEffect(() => {
-      /*
+      
       recetasnormales().then(
-        (...recetanormal) => {
-        recetasveganas()
-        .then((...recetavegana) => {
-          const recetasgeneral = recetanormal.concat(recetavegana)
+        (...recetasgeneral) => {
           console.log(recetasgeneral)
           setRecetas(...recetasgeneral);
           console.log(recetas, "hola")
-      }
-        )
     }
       )
-      */
+      /*
      const data = require('./APIFalsa.json')
      setRecetas(data.results)
-
+*/
     }, [])
-    console.log(recetas, "hh")
+    console.log(recetas, "useeffect")
 
   const login = async (email, password) => {
     let usuario = { "email": email, "password": password }

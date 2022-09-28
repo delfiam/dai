@@ -11,9 +11,10 @@ const Buscador = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [recetas, setRecetas] = useContext(RecetasContext);
 
-  const sinrecetas = () => {  setRecetas('')  }
-  const onChangeSearch = query => {
-  }
+  const sinrecetas = (query) => { 
+  setRecetas('') 
+  setSearchQuery(query) }
+  
   return (
     <View>
       <Searchbar
