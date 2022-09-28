@@ -3,20 +3,22 @@ realice una petición GET al endpoint de búsqueda y muestre los resultados disp
 ítem del punto anterior (ListadoPlatos). El formulario deberá buscar únicamente si hay más de 2 caracteres en el filtro, caso contrario no debe mostrar nada.
 (Es básicamente un buscador form que utiliza get en la API para buscar los platos. no entiendo la parte de caracteres though, así que 
 no sé aún si es una screen o un component, probablemente la segunda) */
-import * as React from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-
+import RecetasContext from '../others/Context';
 const Buscador = () => {
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [recetas, setRecetas] = useContext(RecetasContext);
 
-  const onChangeSearch = query => setSearchQuery(query);
-
+  const sinrecetas = () => {  setRecetas('')  }
+  const onChangeSearch = query => {
+  }
   return (
     <View>
       <Searchbar
         placeholder="Buscar..."
-        onChangeText={onChangeSearch}
+        onChangeText={sinrecetas}
         value={searchQuery}
         style={styles.buscador}
       />
