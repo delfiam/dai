@@ -15,7 +15,7 @@ export default function PlatoCard(props) {
                 <Card.Title title={props.item.item.title} subtitle={props.item.item.diets} />
                 <Card.Cover source={props.item.item.image} />
                 <Card.Actions style={styles.button}>
-                    <Button color='#044C24' onPress={() => navigation.navigate('DetallePlato')}>Ver Detalle</Button>
+                    <Button color='#044C24' onPress={() => navigation.navigate('DetallePlato', props.item.item)}>Ver Detalle</Button>
                     <Button color='#044C24' onPress={() => props.eliminarRecetas(props.item.item.id)}>Eliminar</Button>
                 </Card.Actions>
             </Card>
