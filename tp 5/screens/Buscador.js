@@ -3,27 +3,57 @@ realice una petición GET al endpoint de búsqueda y muestre los resultados disp
 ítem del punto anterior (ListadoPlatos). El formulario deberá buscar únicamente si hay más de 2 caracteres en el filtro, caso contrario no debe mostrar nada.
 (Es básicamente un buscador form que utiliza get en la API para buscar los platos. no entiendo la parte de caracteres though, así que 
 no sé aún si es una screen o un component, probablemente la segunda) */
+import axios from 'axios';
 import React, {useState, useContext} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text, FlatList} from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import PlatoCard from '../components/PlatoCard';
 import RecetasContext from '../others/Context';
 
 export default function BuscadorScreen () {
   const [searchQuery, setSearchQuery] = useState('');
-  const [recetas, setRecetas] = useContext(RecetasContext);
+  const [recetasagregadas, setRecetasAgregadas] = useState([]);
+  function onChangeSearch (query)  {
+  setSearchQuery(query)
+  getPlatos(searchQuery);
 
-  const sinrecetas = (query) => { 
-  setSearchQuery(query) }
+  }
 
+  async function getPlatos () {
+    const {data} = await axios.get("https://api.spoonacular.com/recipes/complexSearch/?apiKey=9d011376615d43b78d523af4e6e1fc9b&addRecipeInformation=true&title=" + searchQuery).then
+    (res => {
+      if (searchQuery.length > 2) {
+    console.log(res.data.results)
+    setRecetasAgregadas(res.data.results)
+    return recetasagregadas;
+      }
+      else {
+        return null;
+      }})
+  }
+
+  const eliminarRecetas = (id) => {
+    const recetasFiltradas = recetasagregadas.filter((receta) => receta.id !== id);
+    setRecetas(recetasFiltradas);
+  }
+
+  const renderItem = (data) => (
+    <PlatoCard item={data}/>
+  )
   return (
     <View style={styles.pag}>
       <Searchbar
         placeholder="Buscar..."
-        onChangeText={sinrecetas}
+        onChangeText={onChangeSearch}
         value={searchQuery}
         style={styles.buscador}
       />
-      <Text>Hola</Text>
+      
+      <FlatList
+        data={recetasagregadas}
+        renderItem={renderItem}
+        numColumns={2}
+      />
     </View>
   );
 };

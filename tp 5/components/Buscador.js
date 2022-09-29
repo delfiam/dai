@@ -4,31 +4,40 @@ realice una petición GET al endpoint de búsqueda y muestre los resultados disp
 (Es básicamente un buscador form que utiliza get en la API para buscar los platos. no entiendo la parte de caracteres though, así que 
 no sé aún si es una screen o un component, probablemente la segunda) */
 import React, {useState, useContext} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import RecetasContext from '../others/Context';
+import { useNavigation } from '@react-navigation/native';
 
 const Buscador = () => {
-// alv hacer un touchable que diga buscar y lleve a la screen buscar
+  navigation = useNavigation();
 
   return (
-    <View>
       <Searchbar
+        placeholder=""
+        value= ""
+        onIconPress={() => navigation.navigate('Buscador')}
         style={styles.buscador}
       />
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
   buscador: {
-    width: '3%',
+    width: 60,
     height: 50,
     alignSelf: 'center',
     borderRadius: 10,
     ocapacity: '80%',
     marginTop: 20,
     marginBottom: 0,
+    alignContent: 'center',
+    backgroundColor: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
+    fontFamily: 'monospace',
+    fontWeight: 300,
   }
 });
 
