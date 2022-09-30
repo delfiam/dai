@@ -16,23 +16,17 @@ import PlatoCard from './PlatoCard';
 export default function CardLis() {
     const navigation = useNavigation();
     const [recetas, setRecetas] = useContext(RecetasContext);
-    const recetasveganas = recetas.filter(receta => receta.vegan === true);
-    const dosrecetasveganas = recetasveganas.slice(0, 2);
-    const recetasnormies = recetas.filter(receta => receta.vegan === false);
-    const dosrecetasnormies = recetasnormies.slice(0, 2);
-    const menu = dosrecetasveganas.concat(dosrecetasnormies);
-    console.log(menu, "menu")
     
      const eliminarRecetas = (id) => {
         const recetasFiltradas = recetas.filter((receta) => receta.id !== id);
         setRecetas(recetasFiltradas);
     }
-  const renderItem = (menu) => (
-    <PlatoCard item={menu} eliminarRecetas={eliminarRecetas}/>
+  const renderItem = (recetas) => (
+    <PlatoCard item={recetas} eliminarRecetas={eliminarRecetas}/>
   )
     return (
         <FlatList
-        data={menu}
+        data={recetas}
         renderItem={renderItem}
         numColumns={2}
       />

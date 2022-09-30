@@ -22,7 +22,7 @@ export default function BuscadorScreen () {
   }
 
   async function getPlatos () {
-    const data = await axios.get("https://api.spoonacular.com/recipes/complexSearch/?apiKey=131acf3cc6dd454aaa6ce4b1887d395d&addRecipeInformation=true&title=" + searchQuery).then
+    const data = await axios.get("https://api.spoonacular.com/recipes/complexSearch/?apiKey=d872ee3feeb344e88e52c8f618a74a1d&addRecipeInformation=true&title=" + searchQuery).then
     (res => {
       if (searchQuery.length > 2) {
     console.log(res.data.results)

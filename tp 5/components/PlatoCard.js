@@ -9,15 +9,18 @@ export default function PlatoCard(props) {
     const [recetas, setRecetas] = useContext(RecetasContext);
     useEffect(() => {
     console.log(props.item.item.title, 'props')
+    if (recetas.find((receta) => receta.id === props.item.item.id)) {
+        setañadido(true);
+      } else {
+          setañadido(false);
+      }
     }, [])
 
-    const agregarPlato = (receta) => {
-        if (recetas.find((receta) => receta.id === props.route.params.id)) {
-          setañadido(true);
-        } else {
-        setRecetas([...recetas, props.route.params]);
+   
+
+    const agregarPlato = () => {
+        setRecetas([...recetas, props.item.item]);
         navigation.goBack();
-      }
     }
     const eliminarRecetas = (id) => {
         const recetasFiltradas = recetas.filter((receta) => receta.id !== id);
@@ -32,7 +35,7 @@ export default function PlatoCard(props) {
                 <Card.Cover source={props.item.item.image} />
                 <Card.Actions style={styles.button}>
                     <Button color='#044C24' onPress={() => navigation.navigate('DetallePlato', props.item.item)}>Ver Detalle</Button>
-                    {setañadido == false ? <Button color='#044C24' onPress={() => agregarPlato(props.item.item.id)}>Agregar</Button> :  <Button color='#044C24' onPress={ () =>  eliminarRecetas(props.item.item.id)}>Eliminar</Button>}
+                    {añadido == false ? <Button color='#044C24' onPress={() => agregarPlato(props.item.item.id)}>Agregar</Button> :  <Button color='#044C24' onPress={ () =>  eliminarRecetas(props.item.item.id)}>Eliminar</Button>}
                 </Card.Actions>
             </Card>
         </View>
