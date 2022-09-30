@@ -10,7 +10,7 @@ import RecetasContext from '../others/Context';
 import { useNavigation } from '@react-navigation/native';
 
 const Buscador = () => {
-  navigation = useNavigation();
+ const navigation = useNavigation();
 
   return (
       <Searchbar

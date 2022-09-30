@@ -1,14 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import RecetasContext from '../others/Context';
 export default function PlatoCard(props) {
     const navigation = useNavigation();
-    const [añadido, setañadir] = useState(false);
+    const [añadido, setañadido] = useState(false);
+    const [recetas, setRecetas] = useContext(RecetasContext);
     useEffect(() => {
     console.log(props.item.item.title, 'props')
     }, [])
+
+    const agregarPlato = (receta) => {
+        if (recetas.find((receta) => receta.id === props.route.params.id)) {
+          setañadido(true);
+        } else {
+        setRecetas([...recetas, props.route.params]);
+        navigation.goBack();
+      }
+    }
+    const eliminarRecetas = (id) => {
+        const recetasFiltradas = recetas.filter((receta) => receta.id !== id);
+        setRecetas(recetasFiltradas);
+        setañadido(false);
+      }
     return (
         <View style={styles.card}>
             <Card >
@@ -17,7 +32,7 @@ export default function PlatoCard(props) {
                 <Card.Cover source={props.item.item.image} />
                 <Card.Actions style={styles.button}>
                     <Button color='#044C24' onPress={() => navigation.navigate('DetallePlato', props.item.item)}>Ver Detalle</Button>
-                    <Button color='#044C24' onPress={() => props.eliminarRecetas(props.item.item.id)}>Eliminar</Button>
+                    {setañadido == false ? <Button color='#044C24' onPress={() => agregarPlato(props.item.item.id)}>Agregar</Button> :  <Button color='#044C24' onPress={ () =>  eliminarRecetas(props.item.item.id)}>Eliminar</Button>}
                 </Card.Actions>
             </Card>
         </View>

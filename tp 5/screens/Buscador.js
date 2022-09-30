@@ -6,13 +6,15 @@ no sé aún si es una screen o un component, probablemente la segunda) */
 import axios from 'axios';
 import React, {useState, useContext} from 'react';
 import { StyleSheet, View, Text, FlatList} from 'react-native';
-import { Searchbar } from 'react-native-paper';
+import { Button, Searchbar } from 'react-native-paper';
 import PlatoCard from '../components/PlatoCard';
 import RecetasContext from '../others/Context';
+import { useNavigation } from '@react-navigation/native';
 
 export default function BuscadorScreen () {
   const [searchQuery, setSearchQuery] = useState('');
   const [recetasagregadas, setRecetasAgregadas] = useState([]);
+  const navigation = useNavigation();
   function onChangeSearch (query)  {
   setSearchQuery(query)
   getPlatos(searchQuery);
@@ -20,7 +22,7 @@ export default function BuscadorScreen () {
   }
 
   async function getPlatos () {
-    const {data} = await axios.get("https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&addRecipeInformation=true&title=" + searchQuery).then
+    const data = await axios.get("https://api.spoonacular.com/recipes/complexSearch/?apiKey=131acf3cc6dd454aaa6ce4b1887d395d&addRecipeInformation=true&title=" + searchQuery).then
     (res => {
       if (searchQuery.length > 2) {
     console.log(res.data.results)
@@ -34,11 +36,11 @@ export default function BuscadorScreen () {
 
   const eliminarRecetas = (id) => {
     const recetasFiltradas = recetasagregadas.filter((receta) => receta.id !== id);
-    setRecetas(recetasFiltradas);
+    setRecetasAgregadas(recetasFiltradas);
   }
 
   const renderItem = (data) => (
-    <PlatoCard item={data}/>
+    <PlatoCard item={data} eliminarRecetas={eliminarRecetas}/>
   )
   return (
     <View style={styles.pag}>
@@ -48,7 +50,7 @@ export default function BuscadorScreen () {
         value={searchQuery}
         style={styles.buscador}
       />
-      
+      <Button onPress={() => navigation.goBack()}>Volver</Button>
       <FlatList
         data={recetasagregadas}
         renderItem={renderItem}

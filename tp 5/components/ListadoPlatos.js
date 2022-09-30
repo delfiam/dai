@@ -27,12 +27,12 @@ export default function CardLis() {
         const recetasFiltradas = recetas.filter((receta) => receta.id !== id);
         setRecetas(recetasFiltradas);
     }
-  const renderItem = (recetas) => (
-    <PlatoCard item={recetas} eliminarRecetas={eliminarRecetas}/>
+  const renderItem = (menu) => (
+    <PlatoCard item={menu} eliminarRecetas={eliminarRecetas}/>
   )
     return (
         <FlatList
-        data={recetas}
+        data={menu}
         renderItem={renderItem}
         numColumns={2}
       />

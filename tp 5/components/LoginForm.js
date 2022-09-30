@@ -25,7 +25,7 @@ export default function LoginForm() {
   };
 
   const recetasnormales = async () => {
-    return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=f220679048714954bb834d5b445d793a&diet=Whole30&addRecipeInformation=true')
+    return axios.get('https://api.spoonacular.com/recipes/complexSearch/?apiKey=131acf3cc6dd454aaa6ce4b1887d395d&diet=Whole30&addRecipeInformation=true')
      .then(response => {
       let recetasgeneral = response.data.results;
       return recetasgeneral;

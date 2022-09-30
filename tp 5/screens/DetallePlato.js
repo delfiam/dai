@@ -7,18 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 import RecetasContext from "../others/Context";
 
 export default function DetalleScreen(props) {
-  const [recetas, setRecetas] = useContext(RecetasContext);
-  const [agregadoDoble, setAgregadoDoble] = useState(false);
+  
   const navigation = useNavigation();
   console.log(props.route.params, 'detalleplato')
-  const agregarPlato = () => {
-    if (recetas.find((receta) => receta.id === props.route.params.id)) {
-      setAgregadoDoble(true);
-    } else {
-    setRecetas([...recetas, props.route.params]);
-    navigation.goBack();
-  }
-}
+
   return (
     <View style={styles.pag}>
       <Card >
@@ -26,12 +18,10 @@ export default function DetalleScreen(props) {
         <Card.Title title={props.route.params.title} subtitle={props.route.params.diets} />
         <Card.Content>
           <Paragraph>Precio : ${props.route.params.pricePerServing}, {props.route.params.vegan ? <Text>Vegano </Text>: <Text>Vegan't</Text>}, Tiempo de cocción: {props.route.params.cookingMinutes} minutos</Paragraph>
-          <Text>{agregadoDoble == true ? 'Este item ya está en el menú' : ''} </Text>
         </Card.Content>
         <Card.Cover source={props.route.params.image} />
         <Card.Actions style={styles.button}>
           <Button color='#044C24' onPress={() => navigation.goBack()}>Volver</Button>
-          <Button color='#044C24' onPress={agregarPlato}>Agregar</Button>
         </Card.Actions>
       </Card>
     </View>
