@@ -50,7 +50,7 @@ export default function BuscadorScreen () {
         value={searchQuery}
         style={styles.buscador}
       />
-      <Button onPress={() => navigation.goBack()}>Volver</Button>
+      <Button onPress={() => navigation.goBack()} color='white'>Volver</Button>
       <FlatList
         data={recetasagregadas}
         renderItem={renderItem}

@@ -17,7 +17,7 @@ export default function DetalleScreen(props) {
         <Avatar.Icon icon="food-variant" style={{ backgroundColor: '#044C24' }}></Avatar.Icon>
         <Card.Title title={props.route.params.title} subtitle={props.route.params.diets} />
         <Card.Content>
-          <Paragraph>Precio : ${props.route.params.pricePerServing}, {props.route.params.vegan ? <Text>Vegano </Text>: <Text>Vegan't</Text>}, Tiempo de cocción: {props.route.params.cookingMinutes} minutos</Paragraph>
+          <Paragraph>Precio por plato : ${props.route.params.pricePerServing}, {props.route.params.vegan ? <Text>Vegano </Text>: <Text>No vegano</Text>}, Tiempo de cocción: {props.route.params.cookingMinutes} minutos</Paragraph>
         </Card.Content>
         <Card.Cover source={props.route.params.image} />
         <Card.Actions style={styles.button}>

@@ -30,8 +30,8 @@ export default function PlatoCard(props) {
     return (
         <View style={styles.card}>
             <Card >
-                <Avatar.Icon icon="food-variant" style={{ backgroundColor: '#044C24' }}></Avatar.Icon>
-                <Card.Title title={props.item.item.title} subtitle={props.item.item.diets} />
+                <Avatar.Icon icon="food-variant" style={{ backgroundColor: '#044C24', margin: 'auto', position: 'relative' }} size={50}></Avatar.Icon>
+                <Card.Title title={props.item.item.title} subtitle={props.item.item.diets} style={styles.title}/>
                 <Card.Cover source={props.item.item.image} />
                 <Card.Actions style={styles.button}>
                     <Button color='#044C24' onPress={() => navigation.navigate('DetallePlato', props.item.item)}>Ver Detalle</Button>
@@ -44,12 +44,15 @@ export default function PlatoCard(props) {
 const styles = StyleSheet.create({
     card: {
         marginTop: 20,
-        margin: 10,
         marginRight: 5,
-        padding: 30,
+        padding: 20,
         width: '50%',
-        textAlign: 'center',
-        alignItems: 'stretch',
+        alignItems: 'fill',
         resizeMode: '',
-    }
+    },
+    title: {
+        textAlign: 'left',
+        fontSize: 10
+    },
+
 })
